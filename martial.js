@@ -2,6 +2,12 @@
 let c = document.getElementById("martialCanvas");
 let ctx = c.getContext("2d");
 
+var background = new Image();
+background.src = "./images/background.jpg";
+background.onload = function(){
+    ctx.drawImage(background,0,0);   
+}
+
 let loadImage = (src, callback) => {
     let img = document.createElement("img");
     img.onload = () => callback(img);
@@ -48,6 +54,7 @@ let animate = (ctx, images, animation, callback) => {
     images[animation].forEach((image, index) => {
         setTimeout(() => {
             ctx.clearRect(0,0,500,500);
+            ctx.drawImage(background,0,0, 500, 500);            
             ctx.drawImage(image, 0, 0, 500, 500);
         }, index * 100);
     });
